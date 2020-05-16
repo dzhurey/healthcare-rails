@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_083907) do
+ActiveRecord::Schema.define(version: 2020_05_16_154923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date", null: false
+    t.bigint "schedule_line_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["schedule_line_id"], name: "index_bookings_on_schedule_line_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
 
   create_table "doctors", force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +63,8 @@ ActiveRecord::Schema.define(version: 2020_05_16_083907) do
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'user_notification_role' for column 'role'
 
+  add_foreign_key "bookings", "schedule_lines"
+  add_foreign_key "bookings", "users"
   add_foreign_key "schedule_lines", "schedules"
   add_foreign_key "schedules", "doctors"
   add_foreign_key "schedules", "hospitals"
