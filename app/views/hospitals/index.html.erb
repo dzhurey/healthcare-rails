@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr class="d-flex">
+      <th class="col-3">Name</th>
+      <th class="col-3">Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @hospitals.each do |hospital| %>
+      <tr class="d-flex">
+        <td class="col-3"><%= hospital.name %></td>
+        <td class="col-3"><%= hospital.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

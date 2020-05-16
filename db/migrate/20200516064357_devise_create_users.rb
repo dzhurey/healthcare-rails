@@ -10,10 +10,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       DDL
 
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :name,               null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
-      t.column :role,               :user_notification_role
+      t.string :email,              null: false, default: ''
+      t.string :name,               null: false, default: ''
+      t.string :encrypted_password, null: false, default: ''
+      t.column :role,               :user_notification_role, default: 'admin'
 
       ## Recoverable
       t.string   :reset_password_token

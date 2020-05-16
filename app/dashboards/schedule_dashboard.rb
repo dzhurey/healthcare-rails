@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class HospitalDashboard < Administrate::BaseDashboard
+class ScheduleDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,12 +8,12 @@ class HospitalDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    doctor: Field::BelongsTo,
+    hospital: Field::BelongsTo,
     id: Field::Number,
-    name: Field::String,
-    address: Field::Text,
-    about: Field::Text,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    schedule_linses: Field::HasMany,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -23,18 +23,17 @@ class HospitalDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
   id
-  name
-  address
-  about
+  doctor
+  hospital
+  created_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
+  doctor
+  hospital
   id
-  name
-  address
-  about
   created_at
   updated_at
   ].freeze
@@ -43,9 +42,8 @@ class HospitalDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-  name
-  address
-  about
+  doctor
+  hospital
   ].freeze
 
   # COLLECTION_FILTERS
@@ -60,10 +58,10 @@ class HospitalDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how hospitals are displayed
+  # Overwrite this method to customize how schedules are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(hospital)
-    hospital.name
+  def display_resource(schedule)
+    "#{schedule.hospital.name} - #{schedule.doctor.name}"
   end
 end

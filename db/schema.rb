@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_081447) do
+ActiveRecord::Schema.define(version: 2020_05_16_083907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,29 @@ ActiveRecord::Schema.define(version: 2020_05_16_081447) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "schedule_lines", force: :cascade do |t|
+    t.bigint "schedule_id", null: false
+    t.integer "day_of_week", null: false
+    t.time "start", null: false
+    t.time "end", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["schedule_id"], name: "index_schedule_lines_on_schedule_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.bigint "doctor_id", null: false
+    t.bigint "hospital_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["doctor_id"], name: "index_schedules_on_doctor_id"
+    t.index ["hospital_id"], name: "index_schedules_on_hospital_id"
+  end
+
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'user_notification_role' for column 'role'
 
+  add_foreign_key "schedule_lines", "schedules"
+  add_foreign_key "schedules", "doctors"
+  add_foreign_key "schedules", "hospitals"
 end

@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
+  devise_for :users
+  resources :doctors, only: %i[index]
+  resources :hospitals, only: %i[index]
+
+  root to: 'doctors#index'
+
   namespace :admin do
     resources :users
     resources :doctors
     resources :hospitals
+    resources :schedules
+    resources :schedule_lines
 
-    root to: "users#index"
+    root to: 'users#index'
   end
-  root to: "admin/users#index"
-  devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

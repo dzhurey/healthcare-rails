@@ -8,4 +8,8 @@ class User < ApplicationRecord
     admin: 'admin',
     user: 'user'
   }
+
+  def admin?
+    role == 'admin'
+  end
 end
