@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :doctors, only: %i[index]
-  resources :hospitals, only: %i[index]
+  resources :doctors, only: %i[index show]
+  resources :hospitals, only: %i[index show]
 
   root to: 'doctors#index'
 

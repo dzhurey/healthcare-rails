@@ -3,6 +3,7 @@
     <tr class="d-flex">
       <th class="col-3">Name</th>
       <th class="col-3">Speciality</th>
+      <th class="col-2"></th>
     </tr>
   </thead>
   <tbody>
@@ -10,6 +11,9 @@
       <tr class="d-flex">
         <td class="col-3"><%= doctor.name %></td>
         <td class="col-3"><%= doctor.speciality %></td>
+        <td class="col-2">
+          <%= link_to "Detail", doctor_path(doctor), class: "btn btn-primary" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -1,0 +1,27 @@
+Name: <b><%= @doctor.name %></b>
+
+<% @schedules.each do |schedule| %>
+  <div class="row mt-5">
+    <div class="col-12">Hospital: <%= schedule.hospital.name %></div>
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr class="d-flex">
+            <th class="col-2">Day</th>
+            <th class="col-2">Start</th>
+            <th class="col-2">End</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% schedule.schedule_lines.each do |line| %>
+            <tr class="d-flex">
+              <td class="col-2"><%= line.day_of_week %></td>
+              <td class="col-2"><%= line.start.strftime("%k:%M") %></td>
+              <td class="col-2"><%= line.end.strftime("%k:%M") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
