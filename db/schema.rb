@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_064357) do
+ActiveRecord::Schema.define(version: 2020_05_16_075656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "speciality", default: "General", null: false
+    t.text "about", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'user_notification_role' for column 'role'
