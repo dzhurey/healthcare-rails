@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-2">
+    Doctor
+  </div>
+  <div class="col-4">
+    <%= @schedule_line.schedule.doctor.name %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-2">
+    Hospital
+  </div>
+  <div class="col-4">
+    <%= @schedule_line.schedule.hospital.name %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-2">
+    Day
+  </div>
+  <div class="col-4">
+    <%= @schedule_line.day_of_week %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-2">
+    Time
+  </div>
+  <div class="col-4">
+    <%= @schedule_line.start.strftime('%H:%M') %>
+  </div>
+</div>
+
+
+<%= render "bookings/form" %>

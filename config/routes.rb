@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :doctors, only: %i[index show]
   resources :hospitals, only: %i[index show]
+  get 'bookings/:id', to: 'bookings#new', as: :booking_new
+  get 'bookings', to: 'bookings#index', as: :bookings
+  post 'bookings/:id', to: 'bookings#create', as: :booking_create
 
   root to: 'doctors#index'
 

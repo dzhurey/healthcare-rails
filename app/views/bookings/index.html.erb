@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr class="d-flex">
+      <th class="col-3">Doctor</th>
+      <th class="col-3">Hospital</th>
+      <th class="col-3">Date</th>
+      <th class="col-3">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr class="d-flex">
+        <td class="col-3"><%= booking.schedule_line.schedule.doctor.name %></td>
+        <td class="col-3"><%= booking.schedule_line.schedule.hospital.name %></td>
+        <td class="col-3"><%= booking.date.strftime('%d/%m/%Y') %></td>
+        <td class="col-3"><%= booking.schedule_line.start.strftime('%H:%M') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

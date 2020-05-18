@@ -10,6 +10,7 @@ Name: <b><%= @doctor.name %></b>
             <th class="col-2">Day</th>
             <th class="col-2">Start</th>
             <th class="col-2">End</th>
+            <th class="col-2"></th>
           </tr>
         </thead>
         <tbody>
@@ -18,6 +19,9 @@ Name: <b><%= @doctor.name %></b>
               <td class="col-2"><%= line.day_of_week %></td>
               <td class="col-2"><%= line.start.strftime("%k:%M") %></td>
               <td class="col-2"><%= line.end.strftime("%k:%M") %></td>
+              <td class="col-2">
+                <%= link_to "Book Now", booking_new_path(line), class: "btn btn-primary" %>
+              </td>
             </tr>
           <% end %>
         </tbody>
