@@ -1,24 +1,49 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirement
 
-Things you may want to cover:
+- Ruby 2.6.4
+- Postgresql
 
-* Ruby version
+## Installation
 
-* System dependencies
+1. Clone this repository
 
-* Configuration
+2. install dependency
 
-* Database creation
+```
+bundle install
+```
 
-* Database initialization
+3. create `.env` file follow on example `.env.example`
 
-* How to run the test suite
+4. setup database
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+rails db:create
+rails db:migrate
+rails db:seed
+```
 
-* Deployment instructions
+5. run rails server
 
-* ...
+```
+rails s
+```
+
+## Operation
+
+1. You can access admin dashboard by login with credentials
+
+```
+email: muhammadszuhri@gmail.com
+password: sehat123
+```
+
+2. As admin you can CRUD doctor, hospital, schedule and schedule line
+
+3. As admin you can see booking list in a week
+
+4. You can sign up as a user by click `sign up` button on `login` page.
+
+5. As user you can see hospital list and doctor list, you can book doctor on the following schedule
