@@ -64,3 +64,5 @@ gem "pundit", "~> 2.1"
 gem 'pg', '>= 0.18', '< 2.0'
 
 gem "administrate", "~> 0.13.0"
+
+gem "faker", "~> 2.11"
