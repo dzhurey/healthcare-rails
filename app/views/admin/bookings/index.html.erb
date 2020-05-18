@@ -2,6 +2,14 @@
 
 <div class="row">
   <div class="col-12">
+    <div class="row">
+      <div class="col-3">
+        <%= link_to "Previous Week", admin_bookings_path(weeks_from_now: (@weeks_from_now - 1).to_s), class: "btn btn-primary" %>
+      </div>
+      <div class="col-3">
+        <%= link_to "Next Week", admin_bookings_path(weeks_from_now: (@weeks_from_now + 1).to_s), class: "btn btn-primary" %>
+      </div>
+    </div>
     <% @result[:schedules].each do |schedule| %>
       <div class="row row-schedule">
         <div class="col-12">Hospital: <b><%= schedule.hospital.name %></b></div>
@@ -13,7 +21,11 @@
             <tr class="d-flex">
               <% schedule.schedule_lines.each do |line| %>
                 <td>
-                  <b><%= line.day_of_week %> <br/><%= line.start.strftime('%H:%M') %></b>
+                  <b>
+                    <%= line.day_of_week %>
+                    <%= @result[:bookings].filter { |book| book.schedule_line_id == line.id }.size > 0 ? @result[:bookings].filter { |book| book.schedule_line_id == line.id }.first.date.strftime('%d/%m/%Y') : '' %><br/>
+                    <%= line.start.strftime('%H:%M') %>
+                  </b>
                   <ul>
                     <% @result[:bookings].filter { |book| book.schedule_line_id == line.id }.each do |book| %>
                       <li>
