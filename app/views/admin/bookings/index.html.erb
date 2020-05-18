@@ -1,0 +1,32 @@
+<h1>Bookings</h1>
+
+<div class="row">
+  <div class="col-12">
+    <% @result[:schedules].each do |schedule| %>
+      <div class="row row-schedule">
+        <div class="col-12">Hospital: <b><%= schedule.hospital.name %></b></div>
+        <div class="col-12">Doctor: <b><%= schedule.doctor.name %></b></div>
+        <div class="col-12">Speciality: <b><%= schedule.doctor.speciality %></b></div>
+
+        <table class="table">
+          <tbody>
+            <tr class="d-flex">
+              <% schedule.schedule_lines.each do |line| %>
+                <td>
+                  <b><%= line.day_of_week %> <br/><%= line.start.strftime('%H:%M') %></b>
+                  <ul>
+                    <% @result[:bookings].filter { |book| book.schedule_line_id == line.id }.each do |book| %>
+                      <li>
+                        <%= book.user.name %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>

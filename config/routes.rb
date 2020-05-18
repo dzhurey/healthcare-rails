@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :users
     resources :doctors
     resources :hospitals
+    resources :bookings, only: %i[index]
     resources :schedules
     resources :schedule_lines
 
